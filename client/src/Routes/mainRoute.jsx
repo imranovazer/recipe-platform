@@ -6,6 +6,7 @@ import Register from "../Page/Auth/Register";
 import AuthController from "./AuthRouteController";
 import PrivatePageController from "./PrivateRouteController";
 import Profile from "../Page/Profile";
+import Home from "../Page/homePage/Home";
 
 export default function MainRoutes() {
   const Routes = [
@@ -14,19 +15,10 @@ export default function MainRoutes() {
       path: '/',
       children: [
         {
-          element: <AuthController />,
-          children: [
-            {
-              path: "/login",
-              element: <Login />,
-            },
-            {
-              path: "/register",
-              element: <Register />,
-            }
-          ]
+          path: "/",
+          element: <Home />
+
         },
-        
         {
           element: <PrivatePageController />,
           children: [
@@ -38,6 +30,18 @@ export default function MainRoutes() {
         },
 
       ],
+    }, {
+      element: <AuthController />,
+      children: [
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
+        }
+      ]
     },
   ];
 

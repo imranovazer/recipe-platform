@@ -1,0 +1,38 @@
+ .sidebar {
+   width: 200px;
+   height: 100vh;
+   background-color: #f1f1f1;
+   transition: transform 0.3s;
+   -webkit-transition: transform 0.3s;
+   -moz-transition: transform 0.3s;
+   -ms-transition: transform 0.3s;
+   -o-transition: transform 0.3s;
+   transform: translateX(100%);
+   -webkit-transform: translateX(100%);
+   -moz-transform: translateX(100%);
+   -ms-transform: translateX(100%);
+   -o-transform: translateX(100%);
+ }
+
+ .open {
+   transform: translateX(0%);
+   -webkit-transform: translateX(0%);
+   -moz-transform: translateX(0%);
+   -ms-transform: translateX(0%);
+   -o-transform: translateX(0%);
+   background-color: #fff;
+   box-shadow: -10px 3px 5px -5px rgba(208, 234, 255, 0.53);
+ }
+
+ .content {
+   transition: margin-left 0.3s;
+   -webkit-transition: margin-left 0.3s;
+   -moz-transition: margin-left 0.3s;
+   -ms-transition: margin-left 0.3s;
+   -o-transition: margin-left 0.3s;
+ }
+
+ .content .shifted {
+
+   background-color: #fffaaa;
+ }
