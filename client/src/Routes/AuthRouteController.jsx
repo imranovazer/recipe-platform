@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router";
 
 function AuthController() {
-    const isTrue = true
+    const isTrue = false
     if (isTrue) {
         return <Navigate to="/" />;
     }

@@ -1,0 +1,17 @@
+.header__section{
+    background-image: url("../../assets/image/download.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 50% 0%;
+}
+
+.header__cover{
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.header__text__style{
+    text-decoration: underline #33CDCD ;
+
+}
+
+
