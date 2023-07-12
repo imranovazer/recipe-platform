@@ -7,7 +7,7 @@ import PrivatePageController from "./PrivateRouteController";
 import Profile from "../Page/Profile";
 import Home from "../Page/homePage/Home";
 import Login from "../Page/Auth/login/Login";
-import Register from "../Page/Auth/Register"
+import Register from "../Page/Auth/register/Register"
 export default function MainRoutes() {
   const Routes = [
     {

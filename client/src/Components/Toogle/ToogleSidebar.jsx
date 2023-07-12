@@ -9,7 +9,7 @@ function ToggleSidebar({ setToogleOpen, toogleOpen }) {
 
   return (
 
-    <div className={`sidebar absolute h-screen right-0 top-0 p-3 ${toogleOpen ? "open " : ''}`}>
+    <div className={`sidebar absolute  right-0 top-0 p-3 ${toogleOpen ? "open " : ''}`}>
       <div className="toogle__close__btn w-full flex justify-end">
         <button onClick={closeToogle} className='text-cyan-300 text-lg'><AiOutlineClose /></button>
       </div>
