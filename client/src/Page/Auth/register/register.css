@@ -1,0 +1,16 @@
+.register__page__decoration{
+    background-image: url("../../../assets/image/7689c5513084cd3ae199cec4f9b84af3.jpg");
+    background-size: cover;
+    background-position:50% 100%;
+    
+}
+
+.register__container{
+    background-color: #33CDCD ;
+    box-shadow: -1px -1px 10px 2px rgba(38, 60, 80, 0.2);
+}
+
+.register__page__decoration__cover{
+    background: rgba(0, 0, 0, 0.3);
+}
+

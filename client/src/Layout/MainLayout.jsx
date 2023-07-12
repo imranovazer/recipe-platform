@@ -74,7 +74,9 @@ function MainLayout() {
             <button onClick={openModal}>
               <img src={projectIcons.navSearchIcon} alt="search icon image" className='w-[30px]' />
             </button>
-
+            <Link to='/login'>
+            <img src={projectIcons.loginIcon} alt="" className='w-[30px] h-[30px] mx-5'  />
+            </Link>
             <img src={projectIcons.menuBarIcon} alt="" className='w-[30px] h-[30px] mx-5 block lg:hidden' onClick={toggleSidebar} />
           </div>
         </div>

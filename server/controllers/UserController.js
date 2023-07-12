@@ -27,11 +27,11 @@ exports.register = async (req, res) => {
 };
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-
+  console.log(req.body);
   const user = await User.findOne({ email });
 
   if (!user) {
-    res.status(401).json({
+     res.status(401).json({
       status: "fail",
       massage: "User with this email doesn't exsist",
     });
