@@ -46,7 +46,7 @@ function MainLayout() {
   return (
     <div className='relative w-full overflow-hidden '>
       <div className="px-5 py-6 w-full">
-        <div className=" grid  grid-cols-2  md:grid-cols-3  justify-between ">
+        <div className=" grid  grid-cols-2  lg:grid-cols-3  justify-between ">
           {/************************ Nav Brand ******************************/}
           <div className="nav__brand ">
             <Link to="/" className="flex items-center">
@@ -55,7 +55,7 @@ function MainLayout() {
             </Link>
           </div>
           {/************************ Nav Links ******************************/}
-          <div className="nav__links hidden sm:block">
+          <div className="nav__links hidden  lg:block">
             <ul className='flex gap-x-3 items-center justify-between'>
               <li><Link>aaaaa</Link></li>
               <li><Link>bbbbb</Link></li>
