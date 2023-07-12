@@ -1,13 +1,13 @@
 import { Navigate } from "react-router-dom";
 import React from 'react'
 import MainLayout from "../Layout/MainLayout";
-import Login from "../Page/Auth/Login";
-import Register from "../Page/Auth/Register";
+
 import AuthController from "./AuthRouteController";
 import PrivatePageController from "./PrivateRouteController";
 import Profile from "../Page/Profile";
 import Home from "../Page/homePage/Home";
-
+import Login from "../Page/Auth/login/Login";
+import Register from "../Page/Auth/Register"
 export default function MainRoutes() {
   const Routes = [
     {
@@ -39,7 +39,7 @@ export default function MainRoutes() {
         },
         {
           path: "/register",
-          element: <Register />,
+          element: <Register/>,
         }
       ]
     },
