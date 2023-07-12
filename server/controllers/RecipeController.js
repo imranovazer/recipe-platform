@@ -1,5 +1,6 @@
 const Recipe = require("../models/Recipe");
 
+const User = require("../models/User");
 const { v4: uuidv4 } = require("uuid");
 var fs = require("fs");
 
@@ -12,7 +13,7 @@ exports.createRecipe = async (req, res) => {
       let fileExt = file.name.substring(file.name.lastIndexOf("."));
       const uuidv = uuidv4();
       uploadPath = __dirname + "/../images/recipe/" + uuidv + fileExt;
-      nameToDb = "/images/recipe/" + uuidv + fileExt;
+      nameToDb = "/../images/recipe/" + uuidv + fileExt;
       file.mv(uploadPath, function (err) {
         console.log(err);
       });
@@ -22,7 +23,7 @@ exports.createRecipe = async (req, res) => {
       let file2Ext = file2.name.substring(file2.name.lastIndexOf("."));
       const uuidv2 = uuidv4();
       uploadPath2 = __dirname + "/../images/recipe/" + uuidv2 + file2Ext;
-      nameToDb2 = "/images/recipe/" + uuidv2 + file2Ext;
+      nameToDb2 = "/../images/recipe/" + uuidv2 + file2Ext;
       file2.mv(uploadPath2, function (err) {
         console.log(err);
       });
@@ -37,6 +38,8 @@ exports.createRecipe = async (req, res) => {
       photo: nameToDb,
       coverImage: nameToDb2,
     });
+    user.recipies.push(newRecipe._id);
+    await user.save();
 
     res.status(201).json({
       ststus: "sucess",
@@ -89,16 +92,20 @@ exports.deleteRecipe = async (req, res) => {
       });
     }
     const deleted = await Recipe.findByIdAndDelete(req.params.id);
-    fs.unlink(deleted.photo, function (err) {
+    fs.unlink(__dirname + deleted.photo, function (err) {
       if (err) {
         console.log(err);
       }
     });
-    fs.unlink(deleted.coverImage, function (err) {
+    fs.unlink(__dirname + deleted.coverImage, function (err) {
       if (err) {
         console.log(err);
       }
     });
+
+    user.recipies = user.recipies.filter((item) => !item.equals(deleted._id));
+
+    await user.save();
 
     res.status(201).json({
       status: "success",
