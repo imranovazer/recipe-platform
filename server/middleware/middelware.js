@@ -11,7 +11,7 @@ exports.protect = async (req, res, next) => {
     token = req.headers.authorization.split(" ")[1];
 
     if (!token) {
-      res.status(403).json({
+      return res.status(403).json({
         status: "fail",
         message: "You are not authorized",
       });
@@ -21,7 +21,7 @@ exports.protect = async (req, res, next) => {
 
     const user = await User.findById(verify.id);
     if (!user) {
-      res.status(403).json({
+      return res.status(403).json({
         status: "fail",
         message: "You are not authorized",
       });
@@ -30,7 +30,7 @@ exports.protect = async (req, res, next) => {
     req.user = user;
     return next();
   } else {
-    res.status(403).json({
+    return res.status(403).json({
       status: "fail",
       message: "You are not authorized",
     });

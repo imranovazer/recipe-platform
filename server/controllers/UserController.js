@@ -2,6 +2,28 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
+exports.whoAmI = async (req, res) => {
+  try {
+    const user = req.user;
+
+    const me = await User.findById(user._id)
+      .populate("recipies")
+      .populate("follow")
+      .populate("favorite")
+      .select("-password");
+
+    res.status(201).json({
+      status: "succes",
+      data: me,
+    });
+  } catch (error) {
+    res.status(201).json({
+      status: "fail",
+      data: error,
+    });
+  }
+};
+
 exports.register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -31,7 +53,7 @@ exports.login = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-     res.status(401).json({
+    return res.status(401).json({
       status: "fail",
       massage: "User with this email doesn't exsist",
     });
