@@ -7,6 +7,8 @@ import "./mainLayout.css"
 import ToggleSidebar from '../Components/Toogle/ToogleSidebar.jsx';
 import { AiOutlineClose, AiOutlineCloudSync } from 'react-icons/ai';
 function MainLayout() {
+  const isAuth = JSON.parse(localStorage.getItem("token"))
+
   const customStyles = {
     content: {
       width: "70%",
@@ -72,12 +74,25 @@ function MainLayout() {
           {/************************ Nav Search ******************************/}
           <div className="flex justify-end  items-center">
             <button onClick={openModal}>
-              <img src={projectIcons.navSearchIcon} alt="search icon image" className='w-[30px]' />
+              <img src={projectIcons.navSearchIcon} alt="search icon image" className='w-[25px] sm:w-[30px] mx-3' />
             </button>
-            <Link to='/login'>
-            <img src={projectIcons.loginIcon} alt="" className='w-[30px] h-[30px] mx-5'  />
-            </Link>
-            <img src={projectIcons.menuBarIcon} alt="" className='w-[30px] h-[30px] mx-5 block lg:hidden' onClick={toggleSidebar} />
+
+            {
+              isAuth ?
+                <>  <Link to='/profile'>
+                  <img src={projectIcons.profileIcon} alt="" className='w-[20px] sm:w-[30px] sm:h-[30px] h-[20px] mx-5' />
+                </Link>
+                  <Link to='/'>
+                    <img src={projectIcons.logoutIcon} alt="" className='w-[20px] sm:w-[30px] sm:h-[30px] h-[20px] mx-5' onClick={() => localStorage.removeItem("token")} />
+                  </Link>
+                </>
+                :
+                <Link to='/login'>
+                  <img src={projectIcons.loginIcon} alt="" className='w-[20px] sm:w-[30px] sm:h-[30px] h-[20px] mx-5' />
+                </Link>
+            }
+
+            <img src={projectIcons.menuBarIcon} alt="" className='w-[20px] sm:w-[30px] sm:h-[30px] h-[20px] mx-5 block lg:hidden' onClick={toggleSidebar} />
           </div>
         </div>
       </div>

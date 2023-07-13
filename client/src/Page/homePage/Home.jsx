@@ -7,7 +7,7 @@ function Home() {
       <div className="header__section relative w-full h-screen bg-slate-50 ">
         <div className="header__cover absolute w-full h-full "></div>
 
-        <div className="header__text relative z-10 h-full flex flex-col justify-center lg:pl-[200px]">
+        <div className="header__text relative z-10 h-full flex flex-col pt-36 sm:pt-[50%] lg:pt-0 lg:justify-center px-5 sm:pl-[50px] lg:pl-[200px]">
           <p className='text-5xl text-white my-2'>
             It is even better than
           </p>
