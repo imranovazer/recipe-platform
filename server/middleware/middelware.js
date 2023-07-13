@@ -2,26 +2,23 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
 exports.protect = async (req, res, next) => {
-  let token;
+  try {
+    let token;
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith("Bearer")
+    ) {
+      token = req.headers.authorization.split(" ")[1];
 
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
-    token = req.headers.authorization.split(" ")[1];
-    console.log(token)
-    if (!token) {
-      return res.status(403).json({
-        status: "fail",
-        message: "You are not authorized",
-      });
-    }
+      if (!token) {
+        return res.status(403).json({
+          status: "fail",
+          message: "You are not authorized",
+        });
+      }
 
-    const verify = await jwt.verify(token, process.env.SECRET_KEY);
+      const verify = await jwt.verify(token, process.env.SECRET_KEY);
 
-    console.log("HAHAHAHAHA" , verify) ;
-
-    if(verify){
       const user = await User.findById(verify.id);
       if (!user) {
         return res.status(403).json({
@@ -32,11 +29,13 @@ exports.protect = async (req, res, next) => {
 
       req.user = user;
       return next();
-
+    } else {
+      return res.status(403).json({
+        status: "fail",
+        message: "You are not authorized",
+      });
     }
-
-    
-  } else {
+  } catch (error) {
     return res.status(403).json({
       status: "fail",
       message: "You are not authorized",

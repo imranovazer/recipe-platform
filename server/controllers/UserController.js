@@ -47,6 +47,7 @@ exports.register = async (req, res) => {
     });
   }
 };
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   console.log(req.body);
@@ -80,4 +81,48 @@ console.log(user);
     status: "sucess",
     access: token,
   });
+};
+
+exports.followUser = async (req, res) => {
+  try {
+    const me = req.user;
+    const follow = req.params.user;
+
+    me.follow.push(follow);
+
+    await me.save();
+    delete me.password;
+
+    res.status(201).json({
+      status: "sucess",
+      data: me,
+    });
+  } catch (error) {
+    res.status(401).json({
+      status: "fail",
+      error,
+    });
+  }
+};
+
+exports.unfollowUser = async (req, res) => {
+  try {
+    const me = req.user;
+    const follow = req.params.user;
+
+    me.follow = me.follow.filter((item) => !item.equals(follow));
+
+    await me.save();
+    delete me.password;
+
+    res.status(201).json({
+      status: "sucess",
+      data: me,
+    });
+  } catch (error) {
+    res.status(401).json({
+      status: "fail",
+      error,
+    });
+  }
 };
