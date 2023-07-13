@@ -134,3 +134,62 @@ exports.getAllRecipes = async (req, res) => {
     });
   }
 };
+
+exports.getOneRecipe = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const recipe = await Recipe.findById(id);
+
+    res.status(201).json({
+      ststus: "sucess",
+      data: recipe,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      error,
+    });
+  }
+};
+
+exports.addToFavorite = async (req, res) => {
+  try {
+    const me = req.user;
+    const recipeToAdd = req.params.id;
+
+    me.favorite.push(recipeToAdd);
+
+    me.save();
+
+    res.status(201).json({
+      status: "sucess",
+      data: me,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      error,
+    });
+  }
+};
+
+exports.removeFromFavorite = async (req, res) => {
+  try {
+    const me = req.user;
+    const recipeToRemove = req.params.id;
+
+    me.favorite = me.favorite.filter((item) => !item.equals(recipeToRemove));
+
+    me.save();
+
+    res.status(201).json({
+      status: "sucess",
+      data: me,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      error,
+    });
+  }
+};
