@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const notify = (Message) => toast(Message);
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   const initialValues = {
     username: "",
     email: "",
@@ -31,10 +31,11 @@ const Register = () => {
       // console.log(response?.data?.user._id);
       // localStorage.setItem("token", JSON.stringify(token));
       // localStorage.setItem("userid", JSON.stringify(response?.data?.user?._id))
-      // navigate("/")
+      navigate("/login")
       console.log(response);
       resetForm();
     } catch (error) {
+      console.log(error);
       notify(error.data.message);
       console.log(error);
     }

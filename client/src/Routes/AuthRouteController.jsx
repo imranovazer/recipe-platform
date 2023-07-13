@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router";
 
 function AuthController() {
-    const isTrue = false
+    const isTrue = JSON.parse(localStorage.getItem("token"))
     if (isTrue) {
         return <Navigate to="/" />;
     }

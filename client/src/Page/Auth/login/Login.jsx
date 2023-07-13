@@ -29,16 +29,15 @@ const Login = () => {
         try {
             const response = await axios.post("http://localhost:8080/api/user/login", values);
             console.log(response);
-            // const token = response.data.token;
-            // console.log(response?.data?.user._id);
-            // localStorage.setItem("token", JSON.stringify(token));
+            const token = response.data.access;
+            localStorage.setItem("token", JSON.stringify(token));
             // localStorage.setItem("userid", JSON.stringify(response?.data?.user?._id))
-            // navigate("/")
+            navigate("/")
             toast.success("Congratulations !!!")
             resetForm();
         } catch (error) {
-             toast.error(error.response.data.massage);
-        
+            toast.error(error.response.data.message);
+           
         }
     };
 
